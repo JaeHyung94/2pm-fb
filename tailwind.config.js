@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       colors: {
         fbblue: '#0c8ef1',
+        fbbg: '#f0f2f5',
       },
       padding: {
         '1/2': '2px',
