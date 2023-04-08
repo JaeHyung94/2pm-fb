@@ -2,7 +2,17 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    minWidth: {
+      10: '40px',
+    },
+    extend: {
+      colors: {
+        fbblue: '#0c8ef1',
+      },
+      padding: {
+        '1/2': '2px',
+      },
+    },
   },
   plugins: [],
 };

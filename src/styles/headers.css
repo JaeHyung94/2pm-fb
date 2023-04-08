@@ -1,0 +1,11 @@
+.header_menu_btn {
+  @apply hidden items-center justify-center md:flex;
+}
+
+.header_not_selected_btn {
+  @apply h-full rounded-md py-2 transition ease-in-out hover:bg-gray-200;
+}
+
+.header_round_btn {
+  @apply flex h-9 w-9 items-center justify-center rounded-full bg-gray-300 hover:opacity-80;
+}
