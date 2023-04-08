@@ -14,7 +14,7 @@ import { Avatar } from './avatar';
 
 export const Header = (): React.ReactElement => {
   return (
-    <header className="sticky grid h-14 w-full auto-cols-fr grid-cols-3 bg-white px-4 drop-shadow-md md:grid-cols-12">
+    <header className="fixed grid h-14 w-full auto-cols-fr grid-cols-3 bg-white px-4 drop-shadow-md md:grid-cols-12">
       <section className="col-span-1 flex items-center md:col-span-2">
         <BsFacebook size={40} color="#0c8ef1" />
         <div className="ml-2 flex h-10 min-w-10 items-center justify-center rounded-full bg-gray-200">
@@ -26,27 +26,27 @@ export const Header = (): React.ReactElement => {
       </section>
       <section className="hidden md:col-span-1 md:block" />
       <section className="col-span-1 flex gap-2 md:col-span-6 md:grid md:grid-cols-5">
-        <button className="border-b-4 border-fbblue">
+        <button className="header_menu_btn border-b-4 border-fbblue">
           <div className="header_menu_btn">
             <AiFillHome size={24} color="#0c8ef1" />
           </div>
         </button>
-        <button className="py-1">
+        <button className="header_menu_btn py-1">
           <div className="header_menu_btn header_not_selected_btn">
             <HiOutlineUsers size={24} />
           </div>
         </button>
-        <button className="py-1">
+        <button className="header_menu_btn py-1">
           <div className="header_menu_btn header_not_selected_btn">
             <AiOutlineYoutube size={24} />
           </div>
         </button>
-        <button className="py-1">
+        <button className="header_menu_btn py-1">
           <div className="header_menu_btn header_not_selected_btn">
             <HiOutlineUserGroup size={24} />
           </div>
         </button>
-        <button className="py-1">
+        <button className="header_menu_btn py-1">
           <div className="header_menu_btn header_not_selected_btn">
             <IoGameControllerOutline size={24} />
           </div>
@@ -73,7 +73,7 @@ export const Header = (): React.ReactElement => {
           </div>
         </button>
         <div className="ml-2 flex h-9 w-9 items-center justify-center hover:opacity-80">
-          <Avatar />
+          <Avatar size={36} />
         </div>
       </section>
     </header>
