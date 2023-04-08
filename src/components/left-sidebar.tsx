@@ -96,12 +96,12 @@ export const LeftSideBar = (): React.ReactElement => {
   const [showAll, setShowAll] = useState<boolean>(false);
 
   return (
-    <nav className="hidden lg:block lg:w-1/4">
+    <nav className="hidden lg:block lg:w-4/5">
       <section className="mx-2 border-b border-gray-300 px-1 pb-2 pt-3">
         <ul>
           <li className="flex items-center rounded-md py-1 transition ease-in-out hover:bg-gray-200">
             <div className="flex h-9 w-9 items-center justify-center">
-              <Avatar size={28} />
+              <Avatar size={'sm'} />
             </div>
             <h3 className="ml-2 text-sm">두시랩</h3>
           </li>

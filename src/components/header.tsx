@@ -73,7 +73,7 @@ export const Header = (): React.ReactElement => {
           </div>
         </button>
         <div className="ml-2 flex h-9 w-9 items-center justify-center hover:opacity-80">
-          <Avatar size={36} />
+          <Avatar size={'md'} />
         </div>
       </section>
     </header>
