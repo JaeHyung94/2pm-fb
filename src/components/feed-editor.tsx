@@ -6,7 +6,7 @@ import { FaPhotoVideo } from 'react-icons/fa';
 
 export const FeedEditor = (): React.ReactElement => {
   return (
-    <section className=" max-h-fit max-w-xl rounded-md bg-white px-4 shadow-md">
+    <section className="max-h-fit rounded-md bg-white px-4 shadow-md">
       <div className="flex items-center border-b border-gray-300 py-3">
         <Avatar size={'lg'} />
         <div className="ml-2 w-full rounded-full bg-gray-200 px-4 py-2 text-gray-600">

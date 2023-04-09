@@ -1,11 +1,14 @@
 import React from 'react';
-import { DOCS } from '../db/docs';
 import { FeedItem } from './feed-item';
+import { useAtomValue } from 'jotai';
+import { DocsAtom } from '../contexts/docsAtom';
 
 export const FeedList = (): React.ReactElement => {
+  const docList = useAtomValue(DocsAtom);
+
   return (
-    <ul className="max-w-xl">
-      {DOCS.map((doc) => (
+    <ul>
+      {docList.map((doc) => (
         <FeedItem item={doc} key={doc.id} />
       ))}
     </ul>
