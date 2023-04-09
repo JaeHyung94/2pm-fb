@@ -6,7 +6,7 @@ export interface IDocsTypes {
     id: string;
   };
   content: string;
-  reactions: number;
+  reactions: string[];
   reply?: IReplyTypes[];
   createdAt: Date;
   updatedAt: Date;
@@ -20,7 +20,7 @@ export interface IReplyTypes {
     id: string;
   };
   content: string;
-  reactions: number;
+  reactions: string[];
   docId: string;
   rereply?: IReReplyTypes[];
   createdAt: Date;
@@ -35,7 +35,7 @@ export interface IReReplyTypes {
     id: string;
   };
   content: string;
-  reactions: number;
+  reactions: string[];
   replyId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -50,43 +50,43 @@ export const DOCS: IDocsTypes[] = [
       id: 'FLfEpR07rY6LW_EULkAHu',
     },
     content: 'This is My First Facebook Post',
-    reactions: 3,
+    reactions: ['1', '2'],
     createdAt: new Date('2023-04-07T09:13:03'),
     updatedAt: new Date('2023-04-07T09:13:03'),
   },
   {
     id: 'CKnWKYs_M3JBwrY_OSfQy',
     writer: {
-      name: 'Jay',
+      name: 'Park',
       avatar: null,
       id: 'FLfEpR07rY6LW_EULkAHu',
     },
     content: 'This is My Second Facebook Post',
-    reactions: 0,
+    reactions: [],
     createdAt: new Date('2023-04-07T09:13:03'),
     updatedAt: new Date('2023-04-07T09:13:03'),
   },
   {
     id: 'XCfrUdT6Mdz0RDoH-xmAe',
     writer: {
-      name: 'Jay',
+      name: 'Kim',
       avatar: null,
       id: 'FLfEpR07rY6LW_EULkAHu',
     },
     content: 'This is My Third Facebook Post',
-    reactions: 38,
+    reactions: ['1', '2', '3', '4'],
     createdAt: new Date('2023-04-07T09:13:03'),
     updatedAt: new Date('2023-04-07T09:13:03'),
   },
   {
     id: 'QsRIVCwREjrBm5jG4kwpI',
     writer: {
-      name: 'Jay',
+      name: 'Chio',
       avatar: null,
       id: 'FLfEpR07rY6LW_EULkAHu',
     },
     content: 'This is My Fourth Facebook Post',
-    reactions: 3,
+    reactions: ['1', '2', '3', '4', '5'],
     createdAt: new Date('2023-04-07T09:13:03'),
     updatedAt: new Date('2023-04-07T09:13:03'),
   },
