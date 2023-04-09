@@ -1,25 +1,21 @@
-import React, { SetStateAction, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { IReplyTypes } from '../db/docs';
 import { Avatar } from './avatar';
 import { timeForToday } from '../utils/timeForToday';
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { UserAtom } from '../contexts/userAtom';
 import { useLike } from '../hooks/useLike';
 import { HiThumbUp } from 'react-icons/hi';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { useDeleteReply } from '../hooks/useDeleteReply';
+import { PopupAtom } from '../contexts/popupAtom';
 
 interface IFeedReplyProps {
   reply: IReplyTypes;
-  showMenu: boolean;
-  setShowMenu: React.Dispatch<SetStateAction<string | null>>;
 }
 
-export const FeedReply = ({
-  reply,
-  showMenu,
-  setShowMenu,
-}: IFeedReplyProps): React.ReactElement => {
+export const FeedReply = ({ reply }: IFeedReplyProps): React.ReactElement => {
+  const [popup, setPopup] = useAtom(PopupAtom);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const user = useAtomValue(UserAtom);
@@ -31,6 +27,20 @@ export const FeedReply = ({
   const [handleDeleteReply] = useDeleteReply({
     targetId: reply.id,
   });
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setPopup(null);
+    }
+  };
+
+  // 외부 클릭 이벤트 리스너 등록
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <li key={reply.id} className="group relative mt-2 flex items-start">
@@ -51,12 +61,12 @@ export const FeedReply = ({
           {reply.replyer.id === user.id && (
             <button
               className="invisible ml-2 rounded-full p-2 transition ease-in-out hover:bg-gray-200 group-hover:visible"
-              onClick={() => setShowMenu(reply.id)}
+              onClick={() => setPopup(reply.id)}
             >
               <FiMoreHorizontal />
             </button>
           )}
-          {showMenu && (
+          {popup === reply.id && (
             <div
               ref={menuRef}
               className="max-w-32 absolute top-10 z-10 w-2/3 rounded-md bg-white p-1 shadow-xl shadow-slate-500 "
@@ -65,7 +75,7 @@ export const FeedReply = ({
                 className="w-full rounded-md px-1 py-1 hover:bg-gray-200"
                 onClick={() => {
                   handleDeleteReply();
-                  setShowMenu(null);
+                  setPopup(null);
                 }}
               >
                 삭제
