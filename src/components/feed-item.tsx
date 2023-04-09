@@ -6,6 +6,7 @@ import { HiOutlineThumbUp, HiThumbUp } from 'react-icons/hi';
 import { MdChatBubbleOutline } from 'react-icons/md';
 import { IoIosShareAlt } from 'react-icons/io';
 import { TextInput } from './text-input';
+import { useLike } from '../hooks/useLike';
 import { useAtomValue } from 'jotai';
 import { UserAtom } from '../contexts/userAtom';
 import { FeedReply } from './feed-reply';
@@ -16,6 +17,10 @@ interface IFeedItemProps {
 
 export const FeedItem = ({ item }: IFeedItemProps): React.ReactElement => {
   const user = useAtomValue(UserAtom);
+  const [handleLike] = useLike({
+    docId: item.id,
+    reactions: item.reactions,
+  });
 
   return (
     <li className="my-3 rounded-md bg-white px-4 pt-3 shadow-md">
@@ -54,7 +59,10 @@ export const FeedItem = ({ item }: IFeedItemProps): React.ReactElement => {
       </div>
       <ul className="flex items-center justify-between border-b border-gray-300 py-1">
         <li className="flex w-1/3 justify-center rounded-md py-2 transition ease-in-out hover:bg-gray-200">
-          <button className="flex items-center justify-center">
+          <button
+            className="flex items-center justify-center"
+            onClick={() => handleLike()}
+          >
             {item.reactions.includes(user.id) ? (
               <HiThumbUp size={24} color="#006de9" />
             ) : (

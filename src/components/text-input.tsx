@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
+import { useReply } from '../hooks/useReply';
 
 interface ITextInputProps {
   isReply: boolean;
@@ -15,6 +16,7 @@ export const TextInput = ({
   const [lines, setLines] = useState<number>(0);
 
   const editableRef = useRef<HTMLDivElement>(null);
+  const [handleReply] = useReply({ docId: targetId, content: content });
 
   return (
     <div
@@ -31,6 +33,7 @@ export const TextInput = ({
         onKeyDown={(e) => {
           if (!e.ctrlKey && !e.shiftKey && e.key === 'Enter') {
             e.preventDefault();
+            isReply ? handleReply() : undefined;
             if (editableRef.current) {
               editableRef.current.innerHTML = '';
               setLines(0);
