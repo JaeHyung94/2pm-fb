@@ -1,5 +1,5 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { DocsAtom } from '../contexts/docsAtom';
+import { DocsAtom, ReplyAtom } from '../contexts/docsAtom';
 import { UserAtom } from '../contexts/userAtom';
 
 interface IHandleLikeProps {
@@ -16,6 +16,7 @@ export const useLike = ({
   reactions,
 }: IHandleLikeProps) => {
   const [docs, setDocs] = useAtom(DocsAtom);
+  const [replies, setReplies] = useAtom(ReplyAtom);
   const user = useAtomValue(UserAtom);
 
   let newReaction: string[] = [];
@@ -43,30 +44,19 @@ export const useLike = ({
   };
 
   const handleReplyLike = () => {
-    const newDocs = docs.map((doc) => {
-      if (doc.id === docId) {
-        const targetReply = doc.reply?.map((reply) => {
-          if (reply.id === replyId) {
-            return {
-              ...reply,
-              reactions: newReaction,
-            };
-          } else {
-            return reply;
-          }
-        });
-
+    const newReply = replies.map((reply) => {
+      if (reply.id === replyId) {
         return {
-          ...doc,
-          reply: targetReply,
+          ...reply,
+          reactions: newReaction,
         };
       } else {
-        return doc;
+        return reply;
       }
     });
 
-    localStorage.setItem('2pmdocs', JSON.stringify(newDocs));
-    setDocs(newDocs);
+    localStorage.setItem('2pmreply', JSON.stringify(newReply));
+    setReplies(newReply);
   };
 
   return [handleLike, handleReplyLike];
