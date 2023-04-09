@@ -5,10 +5,12 @@ import { Feed } from './components/feed';
 import { RightSidebar } from './components/right-sidebar';
 import { DOCS } from './db/docs';
 import { useSetAtom } from 'jotai';
-import { DocsAtom } from './contexts/docsAtom';
+import { DocsAtom, ReReplyAtom, ReplyAtom } from './contexts/docsAtom';
 
 export const App = (): React.ReactElement => {
   const setDocsAtom = useSetAtom(DocsAtom);
+  const setReplyAtom = useSetAtom(ReplyAtom);
+  const setReReplyAtom = useSetAtom(ReReplyAtom);
 
   useEffect(() => {
     //최초 1회 사전 정의된 문서를 가지고 와 localstorage에 저장합니다.
@@ -16,9 +18,21 @@ export const App = (): React.ReactElement => {
       localStorage.setItem('2pmdocs', JSON.stringify(DOCS));
     }
 
+    if (!localStorage.getItem('2pmreply')) {
+      localStorage.setItem('2pmreply', JSON.stringify([]));
+    }
+
+    if (!localStorage.getItem('2pmrereply')) {
+      localStorage.setItem('2pmrereply', JSON.stringify([]));
+    }
+
     const currentDocs = localStorage.getItem('2pmdocs');
+    const replies = localStorage.getItem('2pmreply');
+    const rereplies = localStorage.getItem('2pmrereply');
     //로컬스토리지로부터 문서 데이터를 받아와 전역 상태로 지정합니다.
     setDocsAtom(currentDocs ? JSON.parse(currentDocs) : []);
+    setReplyAtom(replies ? JSON.parse(replies) : []);
+    setReReplyAtom(rereplies ? JSON.parse(rereplies) : []);
   }, []);
 
   return (

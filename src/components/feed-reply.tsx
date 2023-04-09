@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect, useRef, useState } from 'react';
+import React, { SetStateAction, useRef } from 'react';
 import { IReplyTypes } from '../db/docs';
 import { Avatar } from './avatar';
 import { timeForToday } from '../utils/timeForToday';
