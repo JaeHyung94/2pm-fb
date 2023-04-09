@@ -7,6 +7,7 @@ import { UserAtom } from '../contexts/userAtom';
 import { useLike } from '../hooks/useLike';
 import { HiThumbUp } from 'react-icons/hi';
 import { FiMoreHorizontal } from 'react-icons/fi';
+import { useDeleteReply } from '../hooks/useDeleteReply';
 
 interface IFeedReplyProps {
   reply: IReplyTypes;
@@ -26,6 +27,9 @@ export const FeedReply = ({
     docId: reply.docId,
     replyId: reply.id,
     reactions: reply.reactions,
+  });
+  const [handleDeleteReply] = useDeleteReply({
+    targetId: reply.id,
   });
 
   return (
@@ -57,7 +61,13 @@ export const FeedReply = ({
               ref={menuRef}
               className="max-w-32 absolute top-10 z-10 w-2/3 rounded-md bg-white p-1 shadow-xl shadow-slate-500 "
             >
-              <button className="w-full rounded-md px-1 py-1 hover:bg-gray-200">
+              <button
+                className="w-full rounded-md px-1 py-1 hover:bg-gray-200"
+                onClick={() => {
+                  handleDeleteReply();
+                  setShowMenu(null);
+                }}
+              >
                 삭제
               </button>
             </div>
