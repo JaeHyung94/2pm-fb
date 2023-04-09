@@ -25,7 +25,7 @@ export const Header = (): React.ReactElement => {
         </div>
       </section>
       <section className="hidden md:col-span-1 md:block" />
-      <section className="col-span-1 flex gap-2 md:col-span-6 md:grid md:grid-cols-5">
+      <section className="col-span-1 flex gap-2 md:col-span-6 md:grid md:grid-cols-5 xl:w-[36rem] xl:justify-self-center 2xl:w-[42rem]">
         <button className="header_menu_btn border-b-4 border-fbblue">
           <div className="header_menu_btn">
             <AiFillHome size={24} color="#0c8ef1" />

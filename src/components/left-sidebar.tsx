@@ -96,7 +96,7 @@ export const LeftSideBar = (): React.ReactElement => {
   const [showAll, setShowAll] = useState<boolean>(false);
 
   return (
-    <nav className="hidden lg:block lg:w-4/5">
+    <nav className="hidden h-full overflow-scroll lg:block lg:w-1/5">
       <section className="mx-2 border-b border-gray-300 px-1 pb-2 pt-3">
         <ul>
           <li className="flex items-center rounded-md py-1 transition ease-in-out hover:bg-gray-200">

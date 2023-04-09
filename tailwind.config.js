@@ -13,6 +13,9 @@ module.exports = {
       padding: {
         '1/2': '2px',
       },
+      screens: {
+        '3xl': '1920px',
+      },
     },
   },
   plugins: [],
