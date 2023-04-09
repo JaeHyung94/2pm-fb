@@ -43,8 +43,31 @@ export const useLike = ({
   };
 
   const handleReplyLike = () => {
-    return;
+    const newDocs = docs.map((doc) => {
+      if (doc.id === docId) {
+        const targetReply = doc.reply?.map((reply) => {
+          if (reply.id === replyId) {
+            return {
+              ...reply,
+              reactions: newReaction,
+            };
+          } else {
+            return reply;
+          }
+        });
+
+        return {
+          ...doc,
+          reply: targetReply,
+        };
+      } else {
+        return doc;
+      }
+    });
+
+    localStorage.setItem('2pmdocs', JSON.stringify(newDocs));
+    setDocs(newDocs);
   };
 
-  return [handleLike];
+  return [handleLike, handleReplyLike];
 };

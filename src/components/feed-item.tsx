@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IDocsTypes } from '../db/docs';
 import { Avatar } from './avatar';
 import { timeForToday } from '../utils/timeForToday';
@@ -16,6 +16,8 @@ interface IFeedItemProps {
 }
 
 export const FeedItem = ({ item }: IFeedItemProps): React.ReactElement => {
+  const [showReplyMenu, setShowReplyMenu] = useState<string | null>(null);
+
   const user = useAtomValue(UserAtom);
   const [handleLike] = useLike({
     docId: item.id,
@@ -94,7 +96,12 @@ export const FeedItem = ({ item }: IFeedItemProps): React.ReactElement => {
       </ul>
       <ul className="mt-2">
         {item.reply?.map((reply) => (
-          <FeedReply key={reply.id} reply={reply} />
+          <FeedReply
+            key={reply.id}
+            reply={reply}
+            showMenu={showReplyMenu === reply.id}
+            setShowMenu={setShowReplyMenu}
+          />
         ))}
       </ul>
       <div className="items-top mt-3 flex w-full pb-1">
