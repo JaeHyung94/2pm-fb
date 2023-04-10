@@ -10,6 +10,7 @@
     "@types/node": "^16.18.23",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
+    "gh-pages": "^5.0.0",
     "jotai": "^2.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -22,8 +23,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
+  "homepage": "https://JaeHyung94.github.io/2pm-fb",
   "eslintConfig": {
     "extends": [
       "react-app",
