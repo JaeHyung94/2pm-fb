@@ -42,6 +42,7 @@ export const TextInput = ({
 
   const handleSubmit = (): void => {
     if (isReply) {
+      console.log('submit reply: ', content);
       handleReply();
     } else {
       handleReReply();
@@ -67,7 +68,8 @@ export const TextInput = ({
         onBlur={() => setFocused(false)}
         contentEditable
         ref={editableRef}
-        onKeyDown={(e) => {
+        //onKeyDown으로 했는데, 한글 입력이 두번 되는 문제가 생겨서 onKeyPress로 수정. 이후에는 addEventListener로 교체 예정.
+        onKeyPress={(e) => {
           if (!e.ctrlKey && !e.shiftKey && e.key === 'Enter') {
             e.preventDefault();
             handleSubmit();
