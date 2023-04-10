@@ -1,7 +1,7 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { DocsAtom, ReplyAtom } from '../contexts/docsAtom';
+import { DocsAtom, ReReplyAtom, ReplyAtom } from '../contexts/docsAtom';
 import { UserAtom } from '../contexts/userAtom';
-import { IReplyTypes } from '../db/docs';
+import { IReReplyTypes, IReplyTypes } from '../db/docs';
 
 interface IUseReplyProps {
   docId: string;
@@ -11,6 +11,7 @@ interface IUseReplyProps {
 
 export const useReply = ({ docId, replyId, content }: IUseReplyProps) => {
   const [replies, setReplies] = useAtom(ReplyAtom);
+  const [reReplies, setReReplies] = useAtom(ReReplyAtom);
   const user = useAtomValue(UserAtom);
 
   const handleReply = () => {
@@ -29,23 +30,35 @@ export const useReply = ({ docId, replyId, content }: IUseReplyProps) => {
       updatedAt: new Date(),
     };
 
-    // const updatedDocs = docs.map((item) => {
-    //   if (item.id === docId) {
-    //     const newReplyList = (item.reply ?? []).concat([newReplyInfo]);
-    //     return {
-    //       ...item,
-    //       reply: newReplyList,
-    //     };
-    //   } else {
-    //     return item;
-    //   }
-    // });
-
     const newReply = replies.concat([newReplyInfo]);
 
     localStorage.setItem('2pmreply', JSON.stringify(newReply));
     setReplies(newReply);
   };
 
-  return [handleReply];
+  const handleReReply = () => {
+    if (!replyId) {
+      return;
+    }
+    const newReReplyInfo: IReReplyTypes = {
+      id: `${Math.random()}`,
+      rereplyer: {
+        name: user.name,
+        avatar: user.avatar,
+        id: user.id,
+      },
+      content,
+      reactions: [],
+      replyId: replyId,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    const newReReply = reReplies.concat([newReReplyInfo]);
+
+    localStorage.setItem('2pmrereply', JSON.stringify(newReReply));
+    setReReplies(newReReply);
+  };
+
+  return [handleReply, handleReReply];
 };
