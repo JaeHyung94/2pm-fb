@@ -10,6 +10,7 @@ import { FiMoreHorizontal } from 'react-icons/fi';
 import { useDeleteReply } from '../hooks/useDeleteReply';
 import { PopupAtom } from '../contexts/popupAtom';
 import { FeedReplyInput } from './feed-reply-input';
+import { FeedReReplyList } from './feed-rereply-list';
 
 interface IFeedReplyProps {
   reply: IReplyTypes;
@@ -109,6 +110,7 @@ export const FeedReply = ({ reply }: IFeedReplyProps): React.ReactElement => {
           </div>
         </div>
       </div>
+      <FeedReReplyList replyId={reply.id} />
       {reReplyMode ? (
         <div className="pl-9">
           <FeedReplyInput
@@ -116,6 +118,7 @@ export const FeedReply = ({ reply }: IFeedReplyProps): React.ReactElement => {
             replyId={reply.id}
             isReReply={true}
             replyerName={reply.replyer.name}
+            setReReplyMode={setReReplyMode}
           />
         </div>
       ) : (

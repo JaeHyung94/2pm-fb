@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { SetStateAction, useEffect, useRef, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
 import { useReply } from '../hooks/useReply';
 
@@ -8,6 +8,7 @@ interface ITextInputProps {
   targetId: string;
   replyId?: string;
   replyerName?: string;
+  setReReplyMode?: React.Dispatch<SetStateAction<boolean>>;
 }
 
 export const TextInput = ({
@@ -16,6 +17,7 @@ export const TextInput = ({
   replyId,
   targetId,
   replyerName,
+  setReReplyMode,
 }: ITextInputProps): React.ReactElement => {
   const [content, setContent] = useState<string>('');
   const [focused, setFocused] = useState<boolean>(false);
@@ -39,7 +41,13 @@ export const TextInput = ({
   }, []);
 
   const handleSubmit = (): void => {
-    isReply ? handleReply() : handleReReply();
+    if (isReply) {
+      handleReply();
+    } else {
+      handleReReply();
+      setReReplyMode ? setReReplyMode(false) : undefined;
+    }
+
     if (editableRef.current) {
       editableRef.current.innerHTML = '';
       setLines(0);

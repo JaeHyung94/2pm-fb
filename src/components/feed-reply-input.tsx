@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import { Avatar } from './avatar';
 import { TextInput } from './text-input';
 
@@ -7,6 +7,7 @@ interface IFeedReplyInputProps {
   replyId?: string;
   isReReply?: boolean;
   replyerName?: string;
+  setReReplyMode?: React.Dispatch<SetStateAction<boolean>>;
 }
 
 export const FeedReplyInput = ({
@@ -14,6 +15,7 @@ export const FeedReplyInput = ({
   replyId,
   isReReply,
   replyerName,
+  setReReplyMode,
 }: IFeedReplyInputProps): React.ReactElement => {
   return (
     <div className="items-top mt-3 flex w-full pb-1">
@@ -24,6 +26,7 @@ export const FeedReplyInput = ({
         targetId={docId}
         replyId={replyId}
         replyerName={replyerName}
+        setReReplyMode={setReReplyMode}
       />
     </div>
   );
