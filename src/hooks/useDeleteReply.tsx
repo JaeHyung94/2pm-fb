@@ -18,5 +18,11 @@ export const useDeleteReply = ({ targetId }: IUseDeleteReplyProps) => {
     setRereplies(newRereplies);
   };
 
-  return [handleDeleteReply];
+  const handleDeleteReReply = () => {
+    const newReReplies = rereplies.filter((item) => item.id !== targetId);
+    localStorage.setItem('2pmrereply', JSON.stringify(newReReplies));
+    setRereplies(newReReplies);
+  };
+
+  return [handleDeleteReply, handleDeleteReReply];
 };
