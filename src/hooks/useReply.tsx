@@ -1,5 +1,5 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { DocsAtom, ReReplyAtom, ReplyAtom } from '../contexts/docsAtom';
+import { ReReplyAtom, ReplyAtom } from '../contexts/docsAtom';
 import { UserAtom } from '../contexts/userAtom';
 import { IReReplyTypes, IReplyTypes } from '../db/docs';
 

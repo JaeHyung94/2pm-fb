@@ -5,10 +5,12 @@ import { FeedReReply } from './feed-rereply';
 
 interface IFeedReReplyListProps {
   replyId: string;
+  setReReplyMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const FeedReReplyList = ({
   replyId,
+  setReReplyMode,
 }: IFeedReReplyListProps): React.ReactElement => {
   const reReplyList = useAtomValue(ReReplyAtom);
 
@@ -17,7 +19,11 @@ export const FeedReReplyList = ({
       {reReplyList
         .filter((item) => item.replyId === replyId)
         .map((rereply) => (
-          <FeedReReply key={rereply.id} rereply={rereply} />
+          <FeedReReply
+            key={rereply.id}
+            rereply={rereply}
+            setReReplyMode={setReReplyMode}
+          />
         ))}
     </ul>
   );

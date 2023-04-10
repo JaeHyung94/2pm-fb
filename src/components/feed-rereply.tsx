@@ -12,10 +12,12 @@ import { useDeleteReply } from '../hooks/useDeleteReply';
 
 interface IFeedReReplyProps {
   rereply: IReReplyTypes;
+  setReReplyMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const FeedReReply = ({
   rereply,
+  setReReplyMode,
 }: IFeedReReplyProps): React.ReactElement => {
   const [popup, setPopup] = useAtom(PopupAtom);
 
@@ -98,9 +100,11 @@ export const FeedReReply = ({
                 좋아요
               </h5>
             </button>
-            {/* <button onClick={() => setReReplyMode(true)}> */}
-            <h5 className="mr-4 text-xs font-bold text-gray-500">답글 달기</h5>
-            {/* </button> */}
+            <button onClick={() => setReReplyMode(true)}>
+              <h5 className="mr-4 text-xs font-bold text-gray-500">
+                답글 달기
+              </h5>
+            </button>
             <h5 className="text-xs text-gray-500">
               {timeForToday(rereply.createdAt)}
             </h5>

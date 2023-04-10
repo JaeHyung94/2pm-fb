@@ -110,7 +110,7 @@ export const FeedReply = ({ reply }: IFeedReplyProps): React.ReactElement => {
           </div>
         </div>
       </div>
-      <FeedReReplyList replyId={reply.id} />
+      <FeedReReplyList replyId={reply.id} setReReplyMode={setReReplyMode} />
       {reReplyMode ? (
         <div className="pl-9">
           <FeedReplyInput
