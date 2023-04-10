@@ -46,7 +46,6 @@ export const TextInput = ({
 
   const handleSubmit = (): void => {
     if (isReply) {
-      console.log('submit reply: ', content);
       handleReply();
     } else {
       handleReReply();
