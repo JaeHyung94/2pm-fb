@@ -12,9 +12,10 @@ import { FeedReplyCounter } from './feed-reply-counter';
 
 interface IFeedDocProps {
   item: IDocsTypes;
+  setShowModal?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const FeedDoc = ({ item }: IFeedDocProps) => {
+export const FeedDoc = ({ item, setShowModal }: IFeedDocProps) => {
   const user = useAtomValue(UserAtom);
   const [handleLike] = useLike({
     docId: item.id,
@@ -72,12 +73,19 @@ export const FeedDoc = ({ item }: IFeedDocProps) => {
             </h4>
           </button>
         </li>
-        <li className="flex w-1/3 justify-center rounded-md py-2 transition ease-in-out hover:bg-gray-200">
-          <button className="flex items-center justify-center">
-            <MdChatBubbleOutline size={24} color="#59626b" />
-            <h4 className="ml-2 text-gray-500">댓글달기</h4>
-          </button>
-        </li>
+        {setShowModal ? (
+          <li className="flex w-1/3 justify-center rounded-md py-2 transition ease-in-out hover:bg-gray-200">
+            <button
+              className="flex items-center justify-center"
+              onClick={() => setShowModal(true)}
+            >
+              <MdChatBubbleOutline size={24} color="#59626b" />
+              <h4 className="ml-2 text-gray-500">댓글달기</h4>
+            </button>
+          </li>
+        ) : (
+          <></>
+        )}
         <li className="flex w-1/3 justify-center rounded-md py-2 transition ease-in-out hover:bg-gray-200">
           <button className="flex items-center justify-center">
             <IoIosShareAlt size={24} color="#59626b" />

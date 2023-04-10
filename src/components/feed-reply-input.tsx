@@ -8,6 +8,7 @@ interface IFeedReplyInputProps {
   isReReply?: boolean;
   replyerName?: string;
   setReReplyMode?: React.Dispatch<SetStateAction<boolean>>;
+  isModal?: boolean;
 }
 
 export const FeedReplyInput = ({
@@ -16,6 +17,7 @@ export const FeedReplyInput = ({
   isReReply,
   replyerName,
   setReReplyMode,
+  isModal,
 }: IFeedReplyInputProps): React.ReactElement => {
   return (
     <div className="items-top mt-3 flex w-full pb-1">
@@ -27,6 +29,7 @@ export const FeedReplyInput = ({
         replyId={replyId}
         replyerName={replyerName}
         setReReplyMode={setReReplyMode}
+        isModal={isModal}
       />
     </div>
   );

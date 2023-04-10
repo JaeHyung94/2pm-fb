@@ -9,6 +9,7 @@ interface ITextInputProps {
   replyId?: string;
   replyerName?: string;
   setReReplyMode?: React.Dispatch<SetStateAction<boolean>>;
+  isModal?: boolean;
 }
 
 export const TextInput = ({
@@ -18,6 +19,7 @@ export const TextInput = ({
   targetId,
   replyerName,
   setReReplyMode,
+  isModal,
 }: ITextInputProps): React.ReactElement => {
   const [content, setContent] = useState<string>('');
   const [focused, setFocused] = useState<boolean>(false);
@@ -37,6 +39,8 @@ export const TextInput = ({
         setContent(replyerName ?? '');
         editableRef.current.focus();
       }
+    } else if (isModal && editableRef.current) {
+      editableRef.current.focus();
     }
   }, []);
 
