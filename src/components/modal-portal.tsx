@@ -15,7 +15,7 @@ export const ModalPortal = ({ children, setOpenPortal }: IModalPortalProps) => {
       onClick={() => setOpenPortal(false)}
     >
       <div
-        className="w-4/5 rounded-md bg-white shadow-2xl lg:w-3/5 xl:w-1/2"
+        className="w-4/5 rounded-md bg-white shadow-2xl lg:w-3/5 xl:w-1/2 2xl:w-1/4"
         onClick={(e) => e.stopPropagation()}
       >
         {children}
